@@ -7,10 +7,12 @@ public abstract class Character : MonoBehaviour {
     //Movement fields
     public float mass;
     public float maxSpeed;
+    public float maxAirSpeed;
     public Vector3 targetPosition;
     public Vector3 direction = new Vector3(1, 0, 0);  
     public Vector3 velocity = new Vector3(0, 0, 0);
     public Vector3 acceleration = new Vector3(0, 0, 0);
+    public Vector3 vertAcceleration = new Vector3(0, 0, 0);
     protected Vector3 right;
     protected Vector3 forward;
     protected Vector3 futurePos;
@@ -26,12 +28,12 @@ public abstract class Character : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected void Update () {
-        if(direction == Vector3.zero)
-        {
-            direction = new Vector3(1, 0, 0);
-        }
+        //if(direction == Vector3.zero)
+        //{
+        //    direction = new Vector3(1, 0, 0);
+        //}
 
-        forward = direction;
+        forward = transform.forward;
         right = Quaternion.Euler(0, -90, 0) * direction;
 
 
