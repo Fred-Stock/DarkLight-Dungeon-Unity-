@@ -8,8 +8,6 @@ public class Player : Character {
     private Vector3 prevMousePos;
 
     //jumping fields
-    private float jumpTimer;
-    private float inAir;
     private bool jumping;
     private Vector3 jumpVector;
 
@@ -23,9 +21,7 @@ public class Player : Character {
 
 	// Use this for initialization
 	void Start () {
-        //main = Camera.main;
-        inAir = 1f;
-        jumpTimer = 0;
+
         jumping = false;
         jumpVector = new Vector3(0, 0, 0);
 	}
@@ -40,7 +36,7 @@ public class Player : Character {
         {
             if (!jumping)
             {
-                jumpVector = new Vector3(0, 50, 0);  
+                jumpVector = new Vector3(0, 100, 0);  
             }
             jumping = true;
         }
@@ -133,7 +129,7 @@ public class Player : Character {
         if (jumping)
         {
             
-            if(jumpVector.y < 15f && jumpVector.y > 0)
+            if(jumpVector.y < 20f && jumpVector.y > 0)
             {
                 jumpVector.y = -.1f;
             }
@@ -145,18 +141,10 @@ public class Player : Character {
                     jumpVector.y = 5;
                 }
             }
-
-            //if(jumpTimer >= inAir)
-            //{
-            //    jumping = false;
-            //    jumpTimer = 0;
-            //    //jumpVector = new Vector3(0, 5, 0);
-            //}
             else{
-                jumpVector = .9f * jumpVector;
+                jumpVector = .90f * jumpVector;
                 Debug.Log("jump" + jumpVector);
             }
-            jumpTimer += Time.deltaTime;
         }
         return jumpVector;
 
@@ -174,17 +162,16 @@ public class Player : Character {
         if (transform.position.y <= floor.SampleHeight(transform.position) + 8)
         {
             Debug.Log("here");
-            temp.y = floor.SampleHeight(temp) + 8;
+            temp.y = floor.SampleHeight(temp) + 8.1f;
 
             transform.position = temp;
             jumpVector = Vector3.zero;
             jumping = false;
 
         }
-        //if (jumping)
+        //else if(!jumping)
         //{
         //    ApplyGravity();
-        //
         //}
 
     }
