@@ -11,6 +11,7 @@ public class Player : Character {
     private float jumpTimer;
     private float inAir;
     private bool jumping;
+    private Vector3 jumpVector;
 
     private Camera main;
 
@@ -26,6 +27,7 @@ public class Player : Character {
         inAir = 1f;
         jumpTimer = 0;
         jumping = false;
+        jumpVector = new Vector3(0, 0, 0);
 	}
 	
 	// Update is called once per frame
@@ -36,17 +38,14 @@ public class Player : Character {
         //temp section maybe move to another script
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (!jumping)
+            {
+                jumpVector = new Vector3(0, 50, 0);  
+            }
             jumping = true;
         }
 
         mousePos = Input.mousePosition;
-
-        //temporary section
-        //if(mousePos.x >= main.orthographicSize)
-        //{
-        //    mousePos.x = -main.orthographicSize;
-        //    Input.mousePosition = mousePos;
-        //}
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -71,15 +70,16 @@ public class Player : Character {
     /// </summary>
     public override void CalcSteeringForces()
     {
-        Gravity();
         ApplyJumpForce(Jump());
+        Gravity();
         ApplyForce(PlayerInputForce());
     }
 
     protected override void Move()
     {
-        acceleration = acceleration.normalized * maxSpeed;
-        vertAcceleration = vertAcceleration.normalized * maxAirSpeed;
+        acceleration = acceleration.normalized * (float)maxSpeed;
+        //vertAcceleration = vertAcceleration.normalized * (float)maxAirSpeed;
+        vertAcceleration = Vector3.ClampMagnitude(vertAcceleration, maxAirSpeed);
 
         velocity += acceleration * Time.deltaTime;
 
@@ -97,6 +97,7 @@ public class Player : Character {
     private Vector3 PlayerInputForce()
     {
         Vector3 inputVector = Vector3.zero;
+        right = Quaternion.Euler(0, 90, 0) * forward;
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -109,16 +110,13 @@ public class Player : Character {
 
         if (Input.GetKey(KeyCode.D))
         {
-            inputVector -= right;
+            inputVector += right;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            inputVector += right;
+            inputVector -= right;
         }
-        //if(!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
-        //{
-        //    velocity = Vector3.zero;
-        //}
+
 
         return inputVector;
     }
@@ -128,20 +126,40 @@ public class Player : Character {
     /// </summary>
     private Vector3 Jump()
     {
+        //push them upwards with a vector
+        //each frame reduce it by an amount
+        //when at zero use a small downwards vector that increases as they go down that stops increaasing at certain value
 
         if (jumping)
         {
-            jumpTimer += Time.deltaTime;
-            if(jumpTimer >= inAir)
-            {
-                jumping = false;
-                jumpTimer = 0;
-            }
             
-            return new Vector3(0, 5, 0);
-        }
+            if(jumpVector.y < 15f && jumpVector.y > 0)
+            {
+                jumpVector.y = -.1f;
+            }
+            else if(jumpVector.y < 0)
+            {
+                jumpVector = 1.5f * jumpVector;
+                if(jumpVector.y > 5)
+                {
+                    jumpVector.y = 5;
+                }
+            }
 
-        return Vector3.zero;
+            //if(jumpTimer >= inAir)
+            //{
+            //    jumping = false;
+            //    jumpTimer = 0;
+            //    //jumpVector = new Vector3(0, 5, 0);
+            //}
+            else{
+                jumpVector = .9f * jumpVector;
+                Debug.Log("jump" + jumpVector);
+            }
+            jumpTimer += Time.deltaTime;
+        }
+        return jumpVector;
+
 
     }
 
@@ -155,13 +173,19 @@ public class Player : Character {
 
         if (transform.position.y <= floor.SampleHeight(transform.position) + 8)
         {
+            Debug.Log("here");
             temp.y = floor.SampleHeight(temp) + 8;
 
             transform.position = temp;
+            jumpVector = Vector3.zero;
+            jumping = false;
 
         }
-
-        ApplyGravity();
+        //if (jumping)
+        //{
+        //    ApplyGravity();
+        //
+        //}
 
     }
 
