@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Player : Character {
 
-    private Vector3 mousePos;
-    private Vector3 prevMousePos;
-
     //jumping fields
     private bool jumping;
     private Vector3 jumpVector;
 
-    private Camera main;
+    [SerializeField]
+    private Camera playerCam;
+    private Quaternion currentRotation;
+    private Quaternion prevRotation;
+
 
     //temp maybe move to another script if jump gets moved
     [SerializeField]
@@ -36,12 +37,10 @@ public class Player : Character {
         {
             if (!jumping)
             {
-                jumpVector = new Vector3(0, 100, 0);  
+                jumpVector = new Vector3(0, 115, 0);  
             }
             jumping = true;
         }
-
-        mousePos = Input.mousePosition;
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -54,11 +53,25 @@ public class Player : Character {
 
         mouseRotation = Input.GetAxis("Mouse X");
         transform.Rotate(0, mouseRotation, 0);
-       
+        currentRotation = transform.rotation;
+
+
+        if(currentRotation == prevRotation)
+        {
+            Debug.Log("current: " + currentRotation);
+            Debug.Log("previous: " + prevRotation);
+            Debug.Log("it bronk");
+        }
+        if(currentRotation.y != playerCam.transform.rotation.y)
+        {
+            //Debug.Log("here");
+            currentRotation = prevRotation;
+        }
+
         CalcSteeringForces();
         Move();
-
-        prevMousePos = mousePos;
+        //currentRotation = transform.rotation;
+        prevRotation = transform.rotation;
 	}
 
     /// <summary>
@@ -90,6 +103,10 @@ public class Player : Character {
 
     }
 
+    /// <summary>
+    /// method that moves player based on WASD inputs
+    /// </summary>
+    /// <returns></returns>
     private Vector3 PlayerInputForce()
     {
         Vector3 inputVector = Vector3.zero;
@@ -122,9 +139,6 @@ public class Player : Character {
     /// </summary>
     private Vector3 Jump()
     {
-        //push them upwards with a vector
-        //each frame reduce it by an amount
-        //when at zero use a small downwards vector that increases as they go down that stops increaasing at certain value
 
         if (jumping)
         {
@@ -143,7 +157,6 @@ public class Player : Character {
             }
             else{
                 jumpVector = .90f * jumpVector;
-                Debug.Log("jump" + jumpVector);
             }
         }
         return jumpVector;
@@ -161,7 +174,6 @@ public class Player : Character {
 
         if (transform.position.y <= floor.SampleHeight(transform.position) + 8)
         {
-            Debug.Log("here");
             temp.y = floor.SampleHeight(temp) + 8.1f;
 
             transform.position = temp;
@@ -169,10 +181,10 @@ public class Player : Character {
             jumping = false;
 
         }
-        //else if(!jumping)
-        //{
-        //    ApplyGravity();
-        //}
+        else if((transform.position.y > floor.SampleHeight(transform.position) + 8.1f) && !jumping)
+        {
+            ApplyGravity();
+        }
 
     }
 
@@ -190,6 +202,6 @@ public class Player : Character {
     /// </summary>
     private void ApplyGravity()
     {
-        vertAcceleration += new Vector3(0, -3, 0) / mass;
+        vertAcceleration += new Vector3(0, -100, 0) / mass;
     }
 }
