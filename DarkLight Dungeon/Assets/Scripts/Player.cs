@@ -15,8 +15,7 @@ public class Player : Character {
 
 
     //temp maybe move to another script if jump gets moved
-    [SerializeField]
-    private Terrain floor;
+    public Terrain floor;
 
     float mouseRotation;
 
@@ -51,27 +50,30 @@ public class Player : Character {
             Cursor.lockState = CursorLockMode.None;
         }
 
-        mouseRotation = Input.GetAxis("Mouse X");
-        transform.Rotate(0, mouseRotation, 0);
-        currentRotation = transform.rotation;
+       // transform.LookAt(playerCam.transform.forward + transform.position);
+
+        //mouseRotation = Input.GetAxis("Mouse X");
+        //transform.Rotate(0, mouseRotation, 0);
+        //currentRotation = transform.rotation;
 
 
-        if(currentRotation == prevRotation)
-        {
-            Debug.Log("current: " + currentRotation);
-            Debug.Log("previous: " + prevRotation);
-            Debug.Log("it bronk");
-        }
-        if(currentRotation.y != playerCam.transform.rotation.y)
-        {
-            //Debug.Log("here");
-            currentRotation = prevRotation;
-        }
+        //if(currentRotation == prevRotation)
+        //{
+        //    Debug.Log("current: " + currentRotation);
+        //    Debug.Log("previous: " + prevRotation);
+        //    Debug.Log("it bronk");
+        //}
+        //if (playerCam.transform.rotation.x == playerCam.GetComponent<PlayerCamera>().prevRotation.x)
+        //{
+        //    Debug.Log("here");
+        //    currentRotation = prevRotation;
+        //}
 
         CalcSteeringForces();
         Move();
         //currentRotation = transform.rotation;
-        prevRotation = transform.rotation;
+        //transform.rotation = currentRotation;
+        //prevRotation = transform.rotation;
 	}
 
     /// <summary>
