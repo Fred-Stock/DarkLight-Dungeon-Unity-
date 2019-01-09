@@ -13,6 +13,8 @@ public class Player : Character {
     private Quaternion currentRotation;
     private Quaternion prevRotation;
 
+    public GameObject manager;
+    protected LevelData managerData;
 
     //temp maybe move to another script if jump gets moved
     public Terrain floor;
@@ -21,7 +23,7 @@ public class Player : Character {
 
 	// Use this for initialization
 	void Start () {
-
+        managerData = manager.GetComponent<LevelData>();
         jumping = false;
         jumpVector = new Vector3(0, 0, 0);
 	}

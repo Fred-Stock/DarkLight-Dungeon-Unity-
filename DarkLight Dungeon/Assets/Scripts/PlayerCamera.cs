@@ -65,7 +65,7 @@ public class PlayerCamera : MonoBehaviour {
         percentage += prevPercentage;
 
         
-        Vector3 pos = new Vector3(Mathf.Cos(percentage), 0, Mathf.Sin(percentage));
+        Vector3 pos = new Vector3(Mathf.Cos(-percentage), 0, Mathf.Sin(-percentage));
         pos = pos * distFromPlayer;
 
         pos = new Vector3(pos.x + player.transform.position.x, transform.position.y, pos.z + player.transform.position.z);

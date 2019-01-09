@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : Character {
 
     public GameObject player;
+    public int hp;
 
     [SerializeField]
     private Terrain floor;
