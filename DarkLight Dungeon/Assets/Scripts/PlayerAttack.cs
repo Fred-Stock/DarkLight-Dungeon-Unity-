@@ -19,6 +19,7 @@ public class PlayerAttack : Player {
 
         if (Input.GetMouseButtonDown(0))
         {
+            
             for(int i = 0; i < managerData.enemyList.Count; i++)
             {
                 Vector3 vecToEnemy = managerData.enemyList[i].transform.position - transform.position;

@@ -7,6 +7,7 @@ public class Player : Character {
     //jumping fields
     private bool jumping;
     private Vector3 jumpVector;
+    private float halfPlayerHeight;
 
     [SerializeField]
     private Camera playerCam;
@@ -23,6 +24,7 @@ public class Player : Character {
 
 	// Use this for initialization
 	void Start () {
+        halfPlayerHeight = GetComponent<BoxCollider>().bounds.size.y/2f;
         managerData = manager.GetComponent<LevelData>();
         jumping = false;
         jumpVector = new Vector3(0, 0, 0);
@@ -38,7 +40,7 @@ public class Player : Character {
         {
             if (!jumping)
             {
-                jumpVector = new Vector3(0, 115, 0);  
+                jumpVector = new Vector3(0, 150, 0);  
             }
             jumping = true;
         }
@@ -52,30 +54,9 @@ public class Player : Character {
             Cursor.lockState = CursorLockMode.None;
         }
 
-       // transform.LookAt(playerCam.transform.forward + transform.position);
-
-        //mouseRotation = Input.GetAxis("Mouse X");
-        //transform.Rotate(0, mouseRotation, 0);
-        //currentRotation = transform.rotation;
-
-
-        //if(currentRotation == prevRotation)
-        //{
-        //    Debug.Log("current: " + currentRotation);
-        //    Debug.Log("previous: " + prevRotation);
-        //    Debug.Log("it bronk");
-        //}
-        //if (playerCam.transform.rotation.x == playerCam.GetComponent<PlayerCamera>().prevRotation.x)
-        //{
-        //    Debug.Log("here");
-        //    currentRotation = prevRotation;
-        //}
-
         CalcSteeringForces();
         Move();
-        //currentRotation = transform.rotation;
-        //transform.rotation = currentRotation;
-        //prevRotation = transform.rotation;
+
 	}
 
     /// <summary>
@@ -98,9 +79,7 @@ public class Player : Character {
 
         transform.position += acceleration * Time.deltaTime;
         transform.position += vertAcceleration * Time.deltaTime;
-
-        Debug.Log(vertAcceleration);
-
+        
         direction = velocity.normalized;
         acceleration = Vector3.zero;
         vertAcceleration = Vector3.zero;
@@ -176,16 +155,17 @@ public class Player : Character {
         Vector3 temp = transform.position;
 
 
-        if (transform.position.y <= floor.SampleHeight(transform.position) + 8)
+        if (transform.position.y < floor.SampleHeight(transform.position) + halfPlayerHeight)
         {
-            temp.y = floor.SampleHeight(temp) + 8.1f;
+            Debug.Log("hit the ground");
+            temp.y = floor.SampleHeight(temp) + halfPlayerHeight;
 
             transform.position = temp;
             jumpVector = Vector3.zero;
             jumping = false;
 
         }
-        else if((transform.position.y > floor.SampleHeight(transform.position) + 8.1f) && !jumping)
+        else if((transform.position.y > floor.SampleHeight(transform.position) + halfPlayerHeight) && !jumping)
         {
             ApplyGravity();
         }

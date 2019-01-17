@@ -105,7 +105,7 @@ public class PlayerCamera : MonoBehaviour {
         }
         if(currentRotation.x < .26f && currentRotation.x > -.26f)
         {
-            Debug.Log("final statement");
+
             //currentPos = transform.position;
             pos.y -= mouseRotation;
 
