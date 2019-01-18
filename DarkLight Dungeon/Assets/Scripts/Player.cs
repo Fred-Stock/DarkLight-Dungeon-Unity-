@@ -165,17 +165,17 @@ public class Player : Character {
         Vector3 temp = transform.position;
 
 
-        if (transform.position.y < floor.SampleHeight(transform.position) + halfPlayerHeight)
+        if (transform.position.y < floor.SampleHeight(transform.position))
         {
             Debug.Log("hit the ground");
-            temp.y = floor.SampleHeight(temp) + halfPlayerHeight;
+            temp.y = floor.SampleHeight(temp);
 
             transform.position = temp;
             jumpVector = Vector3.zero;
             jumping = false;
 
         }
-        else if((transform.position.y > floor.SampleHeight(transform.position) + halfPlayerHeight) && !jumping)
+        else if((transform.position.y > floor.SampleHeight(transform.position)) && !jumping)
         {
             ApplyGravity();
         }

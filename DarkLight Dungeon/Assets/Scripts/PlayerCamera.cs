@@ -95,7 +95,8 @@ public class PlayerCamera : MonoBehaviour {
         pos = new Vector3(0, Mathf.Cos(percentage), Mathf.Sin(percentage));
         pos = pos * distFromPlayer;
 
-        pos = new Vector3(transform.position.x, pos.y + player.transform.position.y, transform.position.z);
+        pos = new Vector3(transform.position.x, pos.y + player.transform.position.y + 14 , transform.position.z);
+        Debug.Log(pos);
 
         //y rotation checks
         //.7?
