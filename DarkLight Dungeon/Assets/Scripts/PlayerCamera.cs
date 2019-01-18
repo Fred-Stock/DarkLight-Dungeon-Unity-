@@ -24,26 +24,22 @@ public class PlayerCamera : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        //distFromPlayer = Vector3.Distance(player.transform.position, transform.position);
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        //just need to fix the y rotation
-        //look at overrides the rotations and maybe position? not sure what is exactly causing the bugs
 
-
-        transform.LookAt(player.transform.position); //this breaks some things
 
         playerDirection = new Vector3(transform.forward.x, 0, transform.forward.z);
         playerDirection += player.transform.position;
-        player.transform.LookAt(playerDirection);
+        //player.transform.LookAt(playerDirection);
         //Debug.Log(transform.forward);
 
 
 
-        mouseRotation = Input.GetAxis("Mouse X");
+        //mouseRotation = Input.GetAxis("Mouse X");
 
         //////////////////////////////////// X rotations ///////////////////////////////////
         //rotate around the player like dark souls
@@ -58,62 +54,77 @@ public class PlayerCamera : MonoBehaviour {
         // can then multiply that by a scalar to implement a sensitivity thingy
         
         //redeclare variables when it works
+        //percentage = mouseRotation / 1f;
+        //
+        //percentage = Mathf.Atan(percentage);
+        //percentage *= .1f;
+        //percentage += prevPercentage;
+        //
+        //
+        //Vector3 pos = new Vector3(Mathf.Cos(-percentage), 0, Mathf.Sin(-percentage));
+        //pos = pos * distFromPlayer;
+        //
+        //pos = new Vector3(pos.x + player.transform.position.x, transform.position.y, pos.z + player.transform.position.z);
+        //
+        ////transform.position = pos;
+        //
+        //prevPercentage = percentage;
+
+
+        /////////////////////////////////////// Y ROTATIONS ////////////////////////////////
+        mouseRotation = Input.GetAxis("Mouse Y");
+        Vector3 pos;
+
+        Debug.Log(currentRotation.x);
+
         percentage = mouseRotation / 1f;
         
         percentage = Mathf.Atan(percentage);
         percentage *= .1f;
         percentage += prevPercentage;
-
+        if(percentage > Mathf.PI)
+        {
+            percentage = Mathf.PI;
+        }
+        if(percentage < 0)
+        {
+            percentage = 0;
+        }
         
-        Vector3 pos = new Vector3(Mathf.Cos(-percentage), 0, Mathf.Sin(-percentage));
+        
+        pos = new Vector3(0, Mathf.Cos(percentage), Mathf.Sin(percentage));
         pos = pos * distFromPlayer;
 
-        pos = new Vector3(pos.x + player.transform.position.x, transform.position.y, pos.z + player.transform.position.z);
-        
-        //transform.position = pos;
-        
-        prevPercentage = percentage;
-
-
-        /////////////////////////////////////// Y ROTATIONS ////////////////////////////////
-        mouseRotation = Input.GetAxis("Mouse Y");
+        pos = new Vector3(transform.position.x, pos.y + player.transform.position.y, transform.position.z);
 
         //y rotation checks
+        //.7?
         if (currentRotation.x > .26f && mouseRotation < 0) //if rotated more than ~30 degrees above the horizontal axis
         {
-            Debug.Log("maxheight");
             currentRotation = prevRotation;
-            //currentPos = prevPos;
+            currentPos = prevPos;
             //currentPos += (player.transform.position - prevPlayerPos);
             //currentPos.y = prevPos.y;
         }
         else if (currentRotation.x < -.26f && mouseRotation >= 0) //if rotated more than ~30 degrees below the horizontal axis
         {
             currentRotation = prevRotation;
-            //currentPos = prevPos;
+            currentPos = prevPos;
             //currentPos += (player.transform.position - prevPlayerPos);
             //currentPos.y = prevPos.y;
         }
-        else
-        {
-            //currentPos = transform.position;
-            pos.y -= mouseRotation;
 
-            //rotate camera
-            transform.Rotate(mouseRotation, 0, 0);
-            currentRotation = transform.rotation;
-        }
-        if(currentRotation.x < .26f && currentRotation.x > -.26f)
-        {
 
-            //currentPos = transform.position;
-            pos.y -= mouseRotation;
+        
 
-            //rotate camera
-            transform.Rotate(mouseRotation, 0, 0);
-            currentRotation = transform.rotation;
+        prevPercentage = percentage;
+        //currentPos = transform.position;
+        //pos.y -= mouseRotation;
 
-        }
+        //rotate camera
+        transform.Rotate(mouseRotation, 0, 0);
+
+        
 
         if(pos.y < player.GetComponent<Player>().floor.SampleHeight(pos))
         {
@@ -128,5 +139,6 @@ public class PlayerCamera : MonoBehaviour {
         prevPlayerPos = player.transform.position;
         prevPos = currentPos;
 
+        transform.LookAt(player.transform.position);
     }
 }

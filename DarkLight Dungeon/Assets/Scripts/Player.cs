@@ -56,7 +56,7 @@ public class Player : Character {
 
         CalcSteeringForces();
         Move();
-
+        MouseControl();
 	}
 
     /// <summary>
@@ -84,6 +84,16 @@ public class Player : Character {
         acceleration = Vector3.zero;
         vertAcceleration = Vector3.zero;
 
+    }
+
+    /// <summary>
+    /// rotates player based on mouse inputs from user
+    /// </summary>
+    private void MouseControl()
+    {
+        mouseRotation = Input.GetAxis("Mouse X");
+
+        transform.Rotate(0, mouseRotation, 0);
     }
 
     /// <summary>
