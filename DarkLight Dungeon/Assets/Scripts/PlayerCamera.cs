@@ -25,6 +25,7 @@ public class PlayerCamera : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //distFromPlayer = Vector3.Distance(player.transform.position, transform.position);
+
     }
 	
 	// Update is called once per frame
@@ -95,7 +96,7 @@ public class PlayerCamera : MonoBehaviour {
         pos = new Vector3(0, Mathf.Cos(percentage), Mathf.Sin(percentage));
         pos = pos * distFromPlayer;
 
-        pos = new Vector3(transform.position.x, pos.y + player.transform.position.y + 14 , transform.position.z);
+        pos = new Vector3(transform.position.x, pos.y + player.transform.position.y, transform.position.z);
         Debug.Log(pos);
 
         //y rotation checks
@@ -140,6 +141,9 @@ public class PlayerCamera : MonoBehaviour {
         prevPlayerPos = player.transform.position;
         prevPos = currentPos;
 
-        transform.LookAt(player.transform.position);
+        Vector3 lookAt = player.transform.position;
+        lookAt.y += 14;
+
+        transform.LookAt(lookAt);
     }
 }

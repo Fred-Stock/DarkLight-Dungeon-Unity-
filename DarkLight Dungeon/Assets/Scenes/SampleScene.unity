@@ -400,7 +400,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1296598533}
   m_LocalRotation: {x: 0.026558619, y: -0, z: -0, w: 0.9996473}
-  m_LocalPosition: {x: 18.862762, y: 79.14206, z: -133.13391}
+  m_LocalPosition: {x: 0, y: 1.33, z: -1.15}
   m_LocalScale: {x: 16, y: 16, z: 16}
   m_Children: []
   m_Father: {fileID: 1676755016}
@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ceb19993c575014eb2cd9dbb3978e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1676755011}
   Name: sphere
   item: {fileID: 1422337872}
   radius: 2.5
@@ -957,7 +957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ceb19993c575014eb2cd9dbb3978e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1676755011}
   Name: 
   item: {fileID: 2013036825}
   radius: 2.5
