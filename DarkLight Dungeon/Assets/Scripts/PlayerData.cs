@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour {
 
     public List<Item> InventoryList;
+    public int currency;
 
 	// Use this for initialization
 	void Start () {

@@ -400,7 +400,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1296598533}
   m_LocalRotation: {x: 0.026558619, y: -0, z: -0, w: 0.9996473}
-  m_LocalPosition: {x: 0, y: 1.33, z: -1.15}
+  m_LocalPosition: {x: 0, y: 1.57, z: -1.56}
   m_LocalScale: {x: 16, y: 16, z: 16}
   m_Children: []
   m_Father: {fileID: 1676755016}
@@ -838,6 +838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryList: []
+  currency: 0
 --- !u!114 &1676755015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,10 +955,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2013036825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ceb19993c575014eb2cd9dbb3978e85, type: 3}
+  m_Script: {fileID: 11500000, guid: b509626a001598640b994a08637e1a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1676755011}
   Name: 
-  item: {fileID: 2013036825}
-  radius: 2.5
+  item: {fileID: 0}
+  radius: 0

@@ -19,7 +19,7 @@ public class Item : MonoBehaviour {
         PlayerPickup();
 	}
 
-    private void PlayerPickup()
+    protected virtual void PlayerPickup()
     {
         if (Vector3.Distance(player.transform.position, transform.position) < radius + player.GetComponent<BoxCollider>().bounds.size.x/2)
         {
