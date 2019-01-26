@@ -13,8 +13,8 @@ public abstract class Character : MonoBehaviour {
     public Vector3 velocity = new Vector3(0, 0, 0);
     public Vector3 acceleration = new Vector3(0, 0, 0);
     public Vector3 vertAcceleration = new Vector3(0, 0, 0);
-    protected Vector3 right;
-    protected Vector3 forward;
+    public Vector3 right;
+    public Vector3 forward;
     protected Vector3 futurePos;
     protected Vector3 pursueForce;
     protected Vector3 seekingForce;
@@ -43,7 +43,7 @@ public abstract class Character : MonoBehaviour {
     /// applies a force to an object based on its mass
     /// </summary>
     /// <param name="force">force to apply</param>
-    protected void ApplyForce(Vector3 force)
+    public void ApplyForce(Vector3 force)
     {
         acceleration += force / mass;
     }
