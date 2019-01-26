@@ -922,8 +922,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1676755011}
-  Name: sphere
-  item: {fileID: 1422337872}
   radius: 2.5
 --- !u!135 &1422337874
 SphereCollider:
@@ -1097,6 +1095,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
   vertAcceleration: {x: 0, y: 0, z: 0}
+  right: {x: 0, y: 0, z: 0}
+  forward: {x: 0, y: 0, z: 0}
   player: {fileID: 1676755011}
   hp: 2
   floor: {fileID: 543655742}
@@ -1192,10 +1192,12 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
   vertAcceleration: {x: 0, y: 0, z: 0}
+  right: {x: 0, y: 0, z: 0}
+  forward: {x: 0, y: 0, z: 0}
   playerCam: {fileID: 1296598536}
   manager: {fileID: 1600200132}
   floor: {fileID: 543655742}
-  attackRange: 5
+  attackRange: 10
 --- !u!114 &1676755014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,6 +1230,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
   vertAcceleration: {x: 0, y: 0, z: 0}
+  right: {x: 0, y: 0, z: 0}
+  forward: {x: 0, y: 0, z: 0}
   playerCam: {fileID: 1296598536}
   manager: {fileID: 1600200132}
   floor: {fileID: 543655742}
@@ -1329,6 +1333,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1676755011}
-  Name: 
-  item: {fileID: 0}
   radius: 0
