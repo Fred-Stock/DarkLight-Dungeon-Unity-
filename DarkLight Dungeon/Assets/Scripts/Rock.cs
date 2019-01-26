@@ -32,8 +32,8 @@ public class Rock : MonoBehaviour {
         
         Transform child = transform.Find("shard" + iteration);
         child.gameObject.AddComponent<Rigidbody>();
-        child.GetComponent<Rigidbody>().drag = .01f;
-        child.GetComponent<Rigidbody>().mass = 20;
+        child.GetComponent<Rigidbody>().drag = .05f;
+        child.GetComponent<Rigidbody>().mass = 100;
         
     }
 }
