@@ -17,6 +17,8 @@ public class Player : Character {
     public GameObject manager;
     protected LevelData managerData;
 
+    private Canvas inventory;
+
     //temp maybe move to another script if jump gets moved
     public Terrain floor;
 
@@ -24,6 +26,9 @@ public class Player : Character {
 
 	// Use this for initialization
 	void Start () {
+        inventory = GetComponentInChildren<Canvas>();
+        inventory.enabled = false;
+
         halfPlayerHeight = GetComponent<BoxCollider>().bounds.size.y/2f;
         managerData = manager.GetComponent<LevelData>();
         jumping = false;
@@ -52,6 +57,11 @@ public class Player : Character {
         else if (Input.GetKeyDown(KeyCode.G))
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventory.enabled = !inventory.enabled;
         }
 
         CalcSteeringForces();
