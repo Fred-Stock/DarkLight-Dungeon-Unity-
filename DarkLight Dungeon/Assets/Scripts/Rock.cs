@@ -16,24 +16,27 @@ public class Rock : MonoBehaviour {
 
 	}
 
-    void OnMouseDown()
-    {
-        iteration++;
-        CrumbleRock();
-    }
+    //void OnMouseDown()
+    //{
+    //    CrumbleRock();
+    //}
 
     /*
      * loop that iterates when player clicks on rock
      * Each time it iterates break of corresponding rock
      */
 
-    void CrumbleRock()
+    public void CrumbleRock()
     {
-        
-        Transform child = transform.Find("shard" + iteration);
-        child.gameObject.AddComponent<Rigidbody>();
-        child.GetComponent<Rigidbody>().drag = .05f;
-        child.GetComponent<Rigidbody>().mass = 100;
+        if(iteration < 12)
+        {
+            iteration++;
+            Transform child = transform.Find("shard" + iteration);
+            child.gameObject.AddComponent<Rigidbody>();
+            child.GetComponent<Rigidbody>().drag = .05f;
+            child.GetComponent<Rigidbody>().mass = 100;
+    
+        }
         
     }
 }

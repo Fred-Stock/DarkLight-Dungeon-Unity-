@@ -76,7 +76,7 @@ public class PlayerCamera : MonoBehaviour {
         mouseRotation = Input.GetAxis("Mouse Y");
         Vector3 pos;
 
-        Debug.Log(currentRotation.x);
+
 
         percentage = mouseRotation / 1f;
         
@@ -97,7 +97,6 @@ public class PlayerCamera : MonoBehaviour {
         pos = pos * distFromPlayer;
 
         pos = new Vector3(transform.position.x, pos.y + player.transform.position.y, transform.position.z);
-        Debug.Log(pos);
 
         //y rotation checks
         //.7?

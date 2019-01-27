@@ -388,7 +388,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46b3d5dd8e3357646ab78370784840a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 65.14
+      value: 63.44
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46b3d5dd8e3357646ab78370784840a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1158,6 +1158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyList:
   - {fileID: 1546424576}
+  rockList:
+  - {fileID: 1017540763}
 --- !u!4 &1600200134
 Transform:
   m_ObjectHideFlags: 0
@@ -1200,8 +1202,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.30287498, y: 1.1640278, z: 0.17630848}
-  m_Center: {x: 0.0007225367, y: 0.68608165, z: -0.015541554}
+  m_Size: {x: 0.30287498, y: 1.1431367, z: 0.17630848}
+  m_Center: {x: 0.0007225367, y: 0.69652724, z: -0.015541554}
 --- !u!114 &1676755013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1271,7 +1273,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1676755011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 297.36, y: 59.743, z: 174.16}
+  m_LocalPosition: {x: 348.67, y: 58.81, z: 174.16}
   m_LocalScale: {x: 14.408, y: 14.408, z: 14.408}
   m_Children:
   - {fileID: 817385444}

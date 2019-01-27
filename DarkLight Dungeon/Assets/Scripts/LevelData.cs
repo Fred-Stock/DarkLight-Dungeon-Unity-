@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelData : MonoBehaviour {
 
     public List<GameObject> enemyList;
+    public List<GameObject> rockList;
 
 	// Use this for initialization
 	void Start () {
