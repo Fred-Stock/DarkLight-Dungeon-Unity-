@@ -35,7 +35,7 @@ public class Enemy : Character {
     {
         base.Move();
         Vector3 temp = transform.position;
-        temp.y = floor.SampleHeight(transform.position) + 7.5f;
+        temp.y = floor.SampleHeight(transform.position);
         transform.position = temp;
     }
 }

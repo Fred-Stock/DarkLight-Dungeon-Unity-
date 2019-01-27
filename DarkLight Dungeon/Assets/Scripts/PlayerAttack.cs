@@ -8,8 +8,10 @@ public class PlayerAttack : Player {
 
     public float attackRange;
 
-	// Use this for initialization
-	void Start () {
+    Vector3 rayCastOrigin;
+
+    // Use this for initialization
+    void Start () {
         managerData = this.GetComponent<Player>().manager.GetComponent<LevelData>();
         //enemyList = managerData.enemyList;
 	}
@@ -17,24 +19,44 @@ public class PlayerAttack : Player {
 	// Update is called once per frame
 	void Update () {
 
+        rayCastOrigin = transform.position;
+
         if (Input.GetMouseButtonDown(0))
         {
-            
-            for(int i = 0; i < managerData.enemyList.Count; i++)
-            {
-                Vector3 vecToEnemy = managerData.enemyList[i].transform.position - transform.position;
-                float dotForward = Vector3.Dot(vecToEnemy, transform.forward);
-    
-                if (vecToEnemy.sqrMagnitude <= Mathf.Pow(attackRange, 2))
-                { 
-                    if(dotForward > 0)
-                    {
-                        managerData.enemyList[i].GetComponent<Enemy>().hp--;
-                    }
-                }
-    
-            }
+            AttackEnemies();
+            BreakRocks();
         }
 
 	}
+
+    private void AttackEnemies()
+    {
+        for (int i = 0; i < managerData.enemyList.Count; i++)
+        {
+            Vector3 vecToEnemy = managerData.enemyList[i].transform.position - transform.position;
+            float dotForward = Vector3.Dot(vecToEnemy, transform.forward);
+
+            if (vecToEnemy.sqrMagnitude <= Mathf.Pow(attackRange, 2))
+            {
+                if (dotForward > 0)
+                {
+                    managerData.enemyList[i].GetComponent<Enemy>().hp--;
+                }
+            }
+
+        }
+    }
+
+    private void BreakRocks()
+    { 
+
+        for (int i = 0; i < managerData.rockList.Count; i++)
+        {
+            if(Physics.Raycast(rayCastOrigin, direction)){
+                Debug.Log("<color=red>hey!</color>");
+                managerData.rockList[i].GetComponent<Rock>().CrumbleRock();
+            }
+
+        }
+    }
 }
