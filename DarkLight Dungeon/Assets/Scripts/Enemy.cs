@@ -17,8 +17,10 @@ public class Enemy : Character {
 	
 	// Update is called once per frame
 	void Update () {
+        base.Update();
         CalcSteeringForces();
         Move();
+        transform.LookAt(direction + transform.position);
 	}
 
     /// <summary>
