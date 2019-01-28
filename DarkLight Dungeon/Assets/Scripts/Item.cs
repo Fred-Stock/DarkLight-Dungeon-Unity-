@@ -20,8 +20,9 @@ public class Item : MonoBehaviour {
     {
         if (Vector3.Distance(player.transform.position, transform.position) < radius + player.GetComponent<BoxCollider>().bounds.size.x/2)
         {
-            player.GetComponent<PlayerData>().InventoryList.Add(this);
+            player.GetComponent<PlayerData>().InventoryList.Add(gameObject);
             gameObject.SetActive(false);
+            gameObject.GetComponent<Renderer>().enabled = false;
         }
     }
 }

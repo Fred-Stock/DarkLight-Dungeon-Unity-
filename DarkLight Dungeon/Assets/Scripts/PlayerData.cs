@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour {
 
-    public List<Item> InventoryList;
-    public int currency;
+    public List<GameObject> InventoryList;
+    public int Currency;
+    public GameObject Armor;
 
 	// Use this for initialization
 	void Start () {

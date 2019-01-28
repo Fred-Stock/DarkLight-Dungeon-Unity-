@@ -18,7 +18,7 @@ public class Coin : Item {
     {
         if (Vector3.Distance(player.transform.position, transform.position) < radius + player.GetComponent<BoxCollider>().bounds.size.x / 2)
         {
-            player.GetComponent<PlayerData>().currency++;
+            player.GetComponent<PlayerData>().Currency++;
             Destroy(gameObject);
         }
     }
