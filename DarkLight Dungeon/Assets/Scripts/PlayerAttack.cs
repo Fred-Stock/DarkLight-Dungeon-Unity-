@@ -52,7 +52,7 @@ public class PlayerAttack : Player {
 
         for (int i = 0; i < managerData.rockList.Count; i++)
         {
-            if(Physics.Raycast(rayCastOrigin, transform.forward, 10)){
+            if(Physics.Raycast(rayCastOrigin, transform.forward, attackRange)){
                 Debug.Log("<color=red>hey!</color>");
                 managerData.rockList[i].GetComponent<Rock>().CrumbleRock();
             }
