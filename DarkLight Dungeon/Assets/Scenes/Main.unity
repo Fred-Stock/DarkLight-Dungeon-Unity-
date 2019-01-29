@@ -887,11 +887,6 @@ Transform:
   m_Father: {fileID: 910184836}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &613622572 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400034, guid: db05e1190fc2d0d40b2059dbaccae3ca,
-    type: 3}
-  m_PrefabInternal: {fileID: 1613258515}
 --- !u!1 &746949239
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,7 +3375,7 @@ Transform:
   - {fileID: 847753576}
   - {fileID: 1810593611}
   - {fileID: 1363045363}
-  - {fileID: 613622572}
+  - {fileID: 1613258516}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3401,7 +3396,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4416890324009038, guid: 1c71927039685e74a864645761e08478, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 100
+      value: 115.1
       objectReference: {fileID: 0}
     - target: {fileID: 4416890324009038, guid: 1c71927039685e74a864645761e08478, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3431,6 +3426,53 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1492140224224378, guid: 1c71927039685e74a864645761e08478,
     type: 2}
   m_PrefabInternal: {fileID: 1545008376}
+--- !u!114 &1545008378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1545008377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1205285110, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visRange: 10
+  visUpdateInterval: 1
+  checkMethod: 0
+  forceHidden: 0
+--- !u!114 &1545008379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1545008377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 28
+    i1: 113
+    i2: 146
+    i3: 112
+    i4: 57
+    i5: 104
+    i6: 94
+    i7: 116
+    i8: 168
+    i9: 100
+    i10: 100
+    i11: 87
+    i12: 97
+    i13: 224
+    i14: 132
+    i15: 120
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1 &1546023992
 GameObject:
   m_ObjectHideFlags: 0
@@ -3994,6 +4036,10 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db05e1190fc2d0d40b2059dbaccae3ca, type: 3}
   m_IsPrefabAsset: 0
+--- !u!4 &1613258516 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1613258515}
 --- !u!1 &1665205172
 GameObject:
   m_ObjectHideFlags: 0
